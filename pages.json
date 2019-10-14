@@ -1,0 +1,8 @@
+{
+	"prisma": [
+		"https://www.prismamarket.ee/products/16972",
+		"https://www.prismamarket.ee/products/20000",
+		"https://www.prismamarket.ee/kt_products/18382"
+	],
+	"coop": ["https://ecoop.ee/et/kategooriad/puu-ja-koogiviljad/", "https://ecoop.ee/et/kategooriad/koogiviljad/"]
+}
