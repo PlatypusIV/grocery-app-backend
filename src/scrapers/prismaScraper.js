@@ -1,29 +1,64 @@
 // const $ = require('jquery');
 const cheerio = require('cheerio');
 
-const scrapeProducts = htmlPage => {
+const scrapePages = htmlPage => {
+	const rootUrl = 'https://www.prismamarket.ee';
+	const urlArray = [];
 	try {
-		// const elements = $(htmlPage);
-		// let products = $('.js-shelf-item',elements);
-		// console.log(products);
+		const $ = cheerio.load(htmlPage);
+		$('.category-shelf-item.clearfix').each((i, e) => {
+			const urlPart = $(e)
+				.find('a.name.js-category-item')
+				.attr('href');
+			urlArray.push(rootUrl + urlPart);
+		});
+	} catch (error) {
+		console.log(error);
+	}
+	return urlArray;
+};
 
-		const prodNames = [];
+const scrapeProducts = htmlPage => {
+	const products = [];
 
-        const $ = cheerio.load(htmlPage);
+	try {
+		const $ = cheerio.load(htmlPage);
 
-        $('.decimal').each((i,e)=>{
-            console.log($(e).html());
-        });
+		$('.js-shelf-item').each((i, e) => {
+			let product = {};
+			product.name = $(e)
+				.find('div.info.relative.clear')
+				.find('div.name')
+				.text();
+			const quantity = $(e)
+				.find('div.info.relative.clear')
+				.find('.quantity')
+				.text();
+			if (quantity !== null || quantity !== undefined || quantity !== '') {
+				product.quantity = quantity;
+			}
 
-        $('.subname').each((i,e)=>{
-            console.log($(e).html());
-        })
+			product.subname = $(e)
+				.find('div.info.relative.clear')
+				.find('span.subname')
+				.text();
+			let price = $(e)
+				.find('div.price-and-quantity')
+				.find('div.unit-price.js-comp-price')
+				.text();
 
+			price = price.replace(/\n/g, '');
+			product.price = price.trim();
+			products.push(product);
+		});
 	} catch (_e) {
 		console.log(_e);
 	}
+
+	return products;
 };
 
 module.exports = {
 	scrapeProducts,
+	scrapePages,
 };

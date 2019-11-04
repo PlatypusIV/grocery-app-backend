@@ -1,8 +1,1 @@
-{
-	"prisma": [
-		"https://www.prismamarket.ee/products/16972",
-		"https://www.prismamarket.ee/products/20000",
-		"https://www.prismamarket.ee/kt_products/18382"
-	],
-	"coop": ["https://ecoop.ee/et/kategooriad/puu-ja-koogiviljad/", "https://ecoop.ee/et/kategooriad/koogiviljad/"]
-}
+{"prismaOld":["https://www.prismamarket.ee/products/16972","https://www.prismamarket.ee/products/20000","https://www.prismamarket.ee/kt_products/18382","https://www.prismamarket.ee/products/19273","https://www.prismamarket.ee/products/19274","https://www.prismamarket.ee/products/19275","https://www.prismamarket.ee/products/19276","https://www.prismamarket.ee/products/19290",""],"prisma":["https://www.prismamarket.ee/products/19273","https://www.prismamarket.ee/products/19274","https://www.prismamarket.ee/products/19275","https://www.prismamarket.ee/products/19276","https://www.prismamarket.ee/products/19290","https://www.prismamarket.ee/products/19280","https://www.prismamarket.ee/products/19281","https://www.prismamarket.ee/products/19282","https://www.prismamarket.ee/products/19283","https://www.prismamarket.ee/products/19284","https://www.prismamarket.ee/products/19286","https://www.prismamarket.ee/products/19287","https://www.prismamarket.ee/products/19288","https://www.prismamarket.ee/products/19289","https://www.prismamarket.ee/products/19291"],"prismaRoots":["https://www.prismamarket.ee/products/16930"],"coop":["https://ecoop.ee/et/kategooriad/puu-ja-koogiviljad/","https://ecoop.ee/et/kategooriad/koogiviljad/"],"cityAlko":["https://cityalko.ee/tootekategooria/veinid/punane-vein/"]}

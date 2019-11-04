@@ -1,19 +1,34 @@
 const downloader = require('../web/downloader');
-const pagesJson = require('../../pages.json');
 const scraper = require('../scrapers/rootScraper');
+const database = require('../database/dbDialog');
 
 
-const main = async () =>{
-    try {
-        const prismaHtml = await downloader.getPages(pagesJson.prisma);
+const fileHandling = require('../fileHandling.js');
+
+const main = async () => {
+	try {
+
+        //start by getting all urls
+		const pagesData = await fileHandling.readFromPages();
+        const prismaRootPages = await downloader.getPages(pagesData.prismaRoots);
+		const prismaUrls = scraper.getAllLinks(prismaRootPages);
+        pagesData.prisma = [...prismaUrls];
+        fileHandling.writePageUrls(pagesData);
+
+        // then get products
+		const prismaHtml = await downloader.getPages(pagesData.prisma);
+
+        const products = scraper.getAllProducts(prismaHtml);
+        console.log(products);
         
-        scraper.getAllProducts(prismaHtml);
-        
-    } catch (_e) {
-        console.log(_e);
-    }
-}
+        //then put products into database
 
-module.exports={
-    main
-}
+
+	} catch (_e) {
+		console.log(_e);
+	}
+};
+
+module.exports = {
+	main,
+};
