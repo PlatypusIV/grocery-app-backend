@@ -2,7 +2,6 @@ const downloader = require('../web/downloader');
 const scraper = require('../scrapers/rootScraper');
 const database = require('../database/dbDialog');
 
-
 const fileHandling = require('../fileHandling.js');
 
 const main = async () => {
@@ -19,9 +18,11 @@ const main = async () => {
 		const prismaHtml = await downloader.getPages(pagesData.prisma);
 
         const products = scraper.getAllProducts(prismaHtml);
-        console.log(products);
         
         //then put products into database
+        database.createDbIfNeeded();
+
+        database.addProductsToDb(products.prisma,"prisma");
 
 
 	} catch (_e) {
