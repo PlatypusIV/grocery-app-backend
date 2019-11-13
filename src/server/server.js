@@ -14,13 +14,17 @@ app.get("/", (req, res) => {
 
   Promise.all(database.queryAllStores({category:'hakkliha'})).then((data)=>{
     console.log(data);
-    res.send(data);
+    const resultArray = [];
+    for(let i = 0, dLen = data.length;i<dLen;i++){
+      resultArray.push(...data[i]);
+    }
+    res.send(resultArray);
   });
 });
 
 app.post("/", (req, res) => {
   try {
-    res.send("Received post");
+    
   } catch (error) {
     
   }
