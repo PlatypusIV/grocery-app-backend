@@ -90,20 +90,3 @@ module.exports = {
   queryFromDb,
   queryAllStores
 };
-
-// dbo.collection(storeName).find(query)
-// dbo.collection(storeName).findOne({}, (err, result) => {
-//   console.log(result);
-//   arr.push(result);
-// });
-
-// let storeStream = dbo.collection(stores[i]).find(query).stream();
-// storeStream.on('data',(chunk)=>{
-//   data +=chunk;
-// });
-
-// storeStream.on('end',()=>{
-//   i++;
-// });
-
-// resolve(data);
