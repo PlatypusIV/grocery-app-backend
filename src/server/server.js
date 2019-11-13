@@ -11,25 +11,15 @@ const start = () => {
 };
 
 app.get("/", (req, res) => {
-  // const resPromise = database.queryFromDb({store:"prisma"});
-  // database.queryFromDb({category:'linnuliha'}, "prisma").then(fulfilled => {
-  //   console.log(fulfilled);
-  //   res.send(fulfilled);
-  //   res.send("Testing!");
-  // });
-  // database.queryFromDb({"store":"prisma"});
 
   Promise.all(database.queryAllStores({category:'hakkliha'})).then((data)=>{
     console.log(data);
     res.send(data);
   });
-  // console.log(database.queryAllStores({category:'linnuliha'}));
-  // res.send(Promise.all(database.queryAllStores({category:'hakkliha'})));
 });
 
 app.post("/", (req, res) => {
   try {
-    // database.queryFromDb()
     res.send("Received post");
   } catch (error) {
     
