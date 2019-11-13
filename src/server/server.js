@@ -10,10 +10,11 @@ const start = () => {
   });
 };
 
+app.use(express.json()); // needed to parse the body of the request
+
 app.get("/", (req, res) => {
 
-  Promise.all(database.queryAllStores({category:'hakkliha'})).then((data)=>{
-    console.log(data);
+  Promise.all(database.queryAllStores({})).then((data)=>{
     const resultArray = [];
     for(let i = 0, dLen = data.length;i<dLen;i++){
       resultArray.push(...data[i]);
@@ -24,12 +25,20 @@ app.get("/", (req, res) => {
 
 app.post("/", (req, res) => {
   try {
-    
-  } catch (error) {
-    
-  }
+    // console.log(req.params);
+    // console.log(req.headers);
+    // console.log(req.body);
 
-  res.send("Post request received.");
+    Promise.all(database.queryAllStores(req.body)).then((data)=>{
+      const resultArray = [];
+      for(let i = 0, dLen = data.length;i<dLen;i++){
+        resultArray.push(...data[i]);
+      }
+      res.send(resultArray);
+    });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 app.delete("/", (req, res) => {

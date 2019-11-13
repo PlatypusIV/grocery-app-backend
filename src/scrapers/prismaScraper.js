@@ -51,7 +51,7 @@ const scrapeProducts = htmlPage => {
 			price = price.replace(/\n/g, '');
 			product.price = price.trim();
 			product.category = category;
-			product.store = "Prisma";
+			product.store = "prisma";
 			products.push(product);
 		});
 	} catch (_e) {
