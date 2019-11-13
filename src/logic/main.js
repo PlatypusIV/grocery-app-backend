@@ -4,9 +4,10 @@ const database = require('../database/dbDialog');
 
 const fileHandling = require('../fileHandling.js');
 
-const main = async () => {
-	try {
+const server = require('./../server/server');
 
+const handleScraping =async ()=>{
+    try {
         //start by getting all urls
 		const pagesData = await fileHandling.readFromPages();
         const prismaRootPages = await downloader.getPages(pagesData.prismaRoots);
@@ -23,6 +24,21 @@ const main = async () => {
         database.createDbIfNeeded();
 
         database.addProductsToDb(products.prisma,"prisma");
+    } catch (error) {
+        console.log(error);
+    }
+
+}
+
+const handleServer =()=>{
+    server.start();
+}
+
+const main = async () => {
+	try {
+
+        // handleScraping();
+        handleServer();
 
 
 	} catch (_e) {
