@@ -61,7 +61,7 @@ const handleServer = () => {
 
 const main = async () => {
 	try {
-		// handleScraping();
+		handleScraping();
 		handleServer();
 	} catch (_e) {
 		console.log(_e);

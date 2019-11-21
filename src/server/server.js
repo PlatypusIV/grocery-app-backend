@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
-const port = 3000;
+const cors = require('cors');
+const port = 3030;
 
 const database = require("./../database/dbDialog");
 
@@ -11,9 +12,11 @@ const start = () => {
 };
 
 app.use(express.json()); // needed to parse the body of the request
+app.use(cors({
+  origin:'http://localhost:3000'
+})); // needed to allow cross domain origin
 
 app.get("/", (req, res) => {
-
   Promise.all(database.queryAllStores({})).then((data)=>{
     const resultArray = [];
     for(let i = 0, dLen = data.length;i<dLen;i++){

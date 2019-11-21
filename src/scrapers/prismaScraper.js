@@ -23,7 +23,7 @@ const scrapeProducts = htmlPage => {
 
 	try {
 		const $ = cheerio.load(htmlPage);
-		const category = $('h2.js-products-page-name.viewport.category-header').text().toLowerCase();
+		const subCategory = $('h2.js-products-page-name.viewport.category-header').text().toLowerCase();
 
 		$('.js-shelf-item').each((i, e) => {
 			let product = {};
@@ -50,7 +50,7 @@ const scrapeProducts = htmlPage => {
 
 			price = price.replace(/\n/g, '');
 			product.price = price.trim();
-			product.category = category;
+			product.subCategory = subCategory;
 			product.store = "prisma";
 			products.push(product);
 		});
