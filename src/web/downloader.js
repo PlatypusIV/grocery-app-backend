@@ -55,23 +55,22 @@ const getPages = async (urlArray) =>{
         let counter = 0;
         for(let i= 0,uLen= urlArray.length;i<uLen;i++){
             counter+=1;
-            if(counter === 5){
+            
+            if(counter === 4){
                 setTimeout(async ()=>{
                     const pageHtml = await fetchHtml(urlArray[i]);
-                    // console.log(pageHtml);
                     htmlArray.push(pageHtml);
-                },5000);
+                    counter = 0;
+                },2000);
             }else{
                 const pageHtml = await fetchHtml(urlArray[i]);
-                // console.log(pageHtml);
                 htmlArray.push(pageHtml);
             }
-
         }
     } catch (_e) {
         console.log(_e);
     }
-
+    console.log(htmlArray.length);
     return htmlArray;
 }
 

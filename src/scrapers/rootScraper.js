@@ -23,6 +23,7 @@ const getAllCategories =(prismaRoots)=>{
 	} catch (error) {
 		console.log(error);
 	}
+	console.log(categories);
 	return categories;
 }
 
