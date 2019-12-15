@@ -4,6 +4,7 @@ const cors = require('cors');
 const port = 3030;
 
 const database = require("./../database/dbDialog");
+const fileHandling = require('./../fileHandling');
 
 const start = () => {
   app.listen(port, () => {
@@ -24,6 +25,16 @@ app.get("/", (req, res) => {
     }
     res.send(resultArray);
   });
+});
+
+app.get("/categories",(req,res)=>{
+  try {
+    fileHandling.customReadFromFile('categories.json').then(data=>{
+      res.send(data);
+    });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 app.post("/", (req, res) => {

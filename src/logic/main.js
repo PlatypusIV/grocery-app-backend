@@ -22,6 +22,10 @@ const handleScraping = async () => {
 		pagesData.prisma = [...prismaUrls];
 		fileHandling.writePageUrls(pagesData);
 
+		//get categories for items and write them into the categories json
+		let categories = scraper.getAllCategories(prismaRootPages);
+		fileHandling.customWriteToFile('categories.json',JSON.stringify(categories));
+
 		// then get products
 		const prismaHtml = await downloader.getPages(pagesData.prisma);
 

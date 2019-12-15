@@ -14,6 +14,19 @@ const getAllLinks = prismaRoots => {
 	return prismaLinks;
 };
 
+const getAllCategories =(prismaRoots)=>{
+	const categories={prisma:[]};
+	try {
+		for(let i = 0,pLen = prismaRoots.length;i<pLen;i++){
+			categories.prisma.push(prisma.scrapeCategories(prismaRoots[i]));
+		}
+	} catch (error) {
+		console.log(error);
+	}
+	return categories;
+}
+
+
 const getAllProducts = (prismaHtml, coopHtml, cityAlkoHtml) => {
 	const products = {prisma:[],coop:[],cityAlko:[]};
 	if (prismaHtml === null || prismaHtml === undefined) prismaHtml = [];
@@ -32,4 +45,5 @@ const getAllProducts = (prismaHtml, coopHtml, cityAlkoHtml) => {
 module.exports = {
 	getAllProducts,
 	getAllLinks,
+	getAllCategories
 };

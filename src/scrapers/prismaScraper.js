@@ -18,6 +18,26 @@ const scrapePages = htmlPage => {
 	return urlArray;
 };
 
+const scrapeCategories =(rootPage)=>{
+	const category = {mainCategory:"",subCategories:[]};
+	
+	try {
+		const $ = cheerio.load(rootPage);
+		const subCategoriesFromPage = [];
+		category.mainCategory = $('h2.js-products-page-name.clear.category-header').text();
+
+		$('a.name.js-category-item').each((i,e)=>{
+			subCategoriesFromPage.push($(e).text().toLowerCase());
+		});
+
+		category.subCategories.push(...subCategoriesFromPage);
+
+	} catch (error) {
+		console.log(error);
+	}
+	return category;
+}
+
 const scrapeProducts = htmlPage => {
 	const products = [];
 
@@ -64,4 +84,5 @@ const scrapeProducts = htmlPage => {
 module.exports = {
 	scrapeProducts,
 	scrapePages,
+	scrapeCategories
 };
