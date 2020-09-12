@@ -16,7 +16,7 @@
     "fetch": "^1.1.0",
     "jquery": "^3.4.1",
     "mongodb": "^3.3.4",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "request": "^2.88.0"
   }
 }
